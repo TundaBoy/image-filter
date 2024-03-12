@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Filter</title>
+    <!--========== CSS PART ==========-->
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="filter_title">Image Filter</h1>
+
+      <div class="filter_content">
+        <div class="filterable_paragraph">
+          <p class="paragraph active" data-name="image-1">Live and code every minute.Better quality, better systems. Individuals and interactions over process and tools</p>
+          <p class="paragraph" data-name="image-2">Customer collaboration over contact negotiation. Not possible to describe software requirements 
+            up front and leave someone else to develop it 
+            within cost and on time. </p>
+          <p class="paragraph" data-name="image-3">working Software over Comprehensive Documentation. Team holds every-changing roadmap of systems in their heads; 
+            cannot put on paper </p>
+          <p class="paragraph" data-name="image-4"> Responding to change over Following a plan. Developers gain knowledge of the system and as customer gains 
+            knowledge about their needs</p>
+        <p class="paragraph" data-name="image-5"> Our highest priority is to satisfy the customer through early 
+          and continuous delivery of valuable software.</p>
+      </div>
+
+      <div class="filterable_img">
+        <img src="assets/img/image-1.jpg" class="image" data-name="image-1" alt="image-1"/>
+        
+        <img src="assets/img/image-2.jpg" class="image" data-name="image-2" alt="image-2" />
+
+        <img src="assets/img/image-3.jpg" class="image" data-name="image-3" alt="image-3"/>
+       
+        <img src="assets/img/image-4.jpg" class="image" data-name="image-4" alt="image-4"/>
+         
+        <img src="assets/img/image-5.jpg" class="image" data-name="image-5" alt="image-5"/>
+        </div>
+      </div>
+    </div>
+
+    <!--========== JavaScript Part ==========-->
+    <script>
+      // Select all elements with class "filterable_paragraph" and "paragraph"
+      const filterParagraph = document.querySelectorAll(".filterable_paragraph .paragraph");
+
+      // Select all elements with class "filterable_img" and "image"
+      const filterImage = document.querySelectorAll(".filterable_img .image");
+
+      // Function to handle image filtering
+      function imageFilter(e) {
+        // Remove the "active" class from the currently active element
+        document.querySelector(".active").classList.remove("active");
+
+        // Add the "active" class to the clicked element
+        e.target.classList.add("active");
+ // Loop through each image element
+ filterImage.forEach((image) => {
+          // Hide all images initially
+          image.classList.add("hide");
+
+          // Check if the dataset name of the image matches the clicked element's dataset name
+          if (image.dataset.name === e.target.dataset.name) {
+            // If there is a match, show the image
+            image.classList.remove("hide");
+          }
+        });
+      }
+
+      // Add click event listener to each paragraph element for image filtering
+      filterParagraph.forEach((paragraph) =>
+        paragraph.addEventListener("click", imageFilter)
+      );
+    </script>
+  </body>
+</html>
+
